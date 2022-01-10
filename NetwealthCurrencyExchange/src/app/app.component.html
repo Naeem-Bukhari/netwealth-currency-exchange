@@ -1,0 +1,39 @@
+
+<div [formGroup]="currencyExchangForm" class="position-absolute d-flex flex-column align-items-center justify-content-center p-5 w-100 h-100">
+
+  <div class="d-flex flex-row justify-content-center pb-5 text-primary">
+    <h2>Netwealth Currency Exchange</h2>
+  </div>
+    <!-- <mat-label>Toppings</mat-label> -->
+    <div style="width: 400px">
+      <select class="form-select" [formControlName]="controlKeys.From">
+        <ng-container *ngFor="let currency of currencies">
+          <option [value]="currency.currencyCode">{{currency.currencyCode}}</option>
+        </ng-container>
+      </select>
+
+      <div class="d-flex flex-row justify-content-center pt-1 pb-1">
+        <hr class="w-25">
+        <span class="d-flex align-items-center">&nbsp; Convert To &nbsp;</span>
+        <hr class="w-25">
+      </div>
+
+      <select class="form-select" [formControlName]="controlKeys.To">
+        <ng-container *ngFor="let currency of currencies">
+          <option [value]="currency.currencyCode">{{currency.currencyCode}}</option>
+        </ng-container>
+      </select>
+
+      <div class="d-flex flex-row justify-content-center pt-1 pb-1">
+        <hr class="w-25">
+        <span class="d-flex align-items-center">&nbsp; Amount &nbsp;</span>
+        <hr class="w-25">
+      </div>
+
+      <input class="form-control" type="number" [formControlName]="controlKeys.Amount">
+
+      <div class="mt-5 text-success">
+        <h4>Converted Amount: {{ (exchangedData$ | async)?.convertedAmount | number }}</h4>
+      </div>
+    </div>
+</div>
